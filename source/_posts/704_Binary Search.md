@@ -1,0 +1,92 @@
+---
+title: "[Leetcode] #704_Binary Search"
+date: 2021-07-02 11:13:16
+updated: 2021-11-30 15:21:16
+tags: [Leetcode]
+---
+
+[#704_Binary Search](https://leetcode.com/problems/binary-search/) belongs to the EASY category in Leetcode.
+<!-- more -->
+## Problem description:
+Given an array of integers `nums` which is sorted in ascending order, and an integer target, write a function to search target in `nums`. If target exists, then return its index. Otherwise, return `-1`.
+You must write an algorithm with O(log n) runtime complexity.
+
+### Example 1:
+
+Input: `nums = [-1,0,3,5,9,12], target = 9`
+Output: 4
+Explanation: 9 exists in `nums` and its index is 4
+
+### Example 2:
+
+Input: `nums = [-1,0,3,5,9,12], target = 2`
+Output: -1
+Explanation: 2 does not exist in `nums` so return `-1`
+
+Constraints:
+`1 <= nums.length <= 104`
+`-104 < nums[i], target < 104`
+
+- All the integers in `nums` are unique.
+- `nums` is sorted in ascending order.
+
+## Breaking down the problem in my own words:
+Our function takes in 2 parameters: a sorted array nums of integers in ascending order, and an integer target which represents the number that we are going to search inside of nums .
+If we find target , return target . If not, return -1.
+There are no duplicates, each integer only appears once.
+O(log n) runtime complexity is a must.
+
+
+## solution 1
+
+The solution I came up with at first sight is simply use the JavaScript array method array.indexOf() by passing in nums as the array, and target as the parameter of the function.
+
+```
+const search = function(nums, target) {
+    return nums.indexOf(target)
+};
+```
+
+Fast and simple as it is but this solution didn’t seem to meet the requirement of using O(log n) runtime complexity. The native JavaScript method array.indexOf() is technically a for loop, which it loops through the array from the first element( if we didn’t specify which searching index to start with ) until it finds the target and return its index. So its a O(n) with n being the size of the array.
+
+### Results:
+
+```
+Runtime: 68ms
+Memory Usage: 42.3MB
+```
+
+## solution 2
+
+Most of the titles could have indicated the problem set’s related topic already while this one is pretty straight forward. This is not my first encounter with binary search scenarios (last time with the number-guessing game every programming newbie would’ve seen) so let’s just make use of that logic and quickly give it a try:
+To perform a binary search requires a sorted array. First find the element which locates at the middle of the array, then determine whether the element value equals to the target we’re looking for. If it’s too big, eliminate the whole other half on the right; if too small, eliminate the whole other half on the left. Then reset the range. Then perform the same process over and over until we find a match.
+
+```
+const search = function(nums, target) {
+  let left = 0
+  let right = nums.length - 1
+  let mid = Math.floor((left + right) / 2)
+  
+  while (left <= right) {
+      if (nums[mid] === target) {
+        return mid  
+      } else if (nums[mid] > target) {
+          right = mid - 1
+      } else {
+          left = mid + 1
+      }
+      mid = Math.floor((left + right) / 2)
+  }
+  
+  return -1 
+};
+```
+
+Although it requires more effort and looks more troublesome than the previous solution, it does meet the expectation of using O(log n) time complexity, meaning if the array gets bigger, say 100 elements, the worst case scenario could be performing 10 searches. On the other hand, using array.indexOf() which is O(n) , would take much longer if the array gets larger.
+
+### Results:
+
+```
+Runtime: 72ms
+Memory Usage: 42.2MB
+```
