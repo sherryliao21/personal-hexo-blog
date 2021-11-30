@@ -13,7 +13,7 @@ timezone:
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: http://example.com
+url: https://icaughtacode-hexo-blog.netlify.app/
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
@@ -133,5 +133,5 @@ aomori_social:
     type: logo
     url: https://icaughtacode.medium.com/
 
-aomori_google_analytics: 'UA-XXXXX-X'
+aomori_google_analytics: 'UA-144226695-2'
 aomori_favicon: 📓
