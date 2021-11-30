@@ -4,7 +4,7 @@ layout: default
 date: 2021-11-29 17:04:28
 ---
 <p align="center">
-  <img src="sherry.png" alt="avatar" width="200" style="margin-bottom: 6px; border-radius: 50%; border: 4px #ffffff solid; box-shadow: 6px 6px 10px -4px rgba(189,189,189,0.75);
+  <img src="sherry.png" alt="avatar" width="150" style="margin-bottom: 6px; border-radius: 50%; border: 4px #ffffff solid; box-shadow: 6px 6px 10px -4px rgba(189,189,189,0.75);
   -webkit-box-shadow: 6px 6px 10px -4px rgba(189,189,189,0.75);
   -moz-box-shadow: 6px 6px 10px -4px rgba(189,189,189,0.75);"/>
 </p>
