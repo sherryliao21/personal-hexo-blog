@@ -2,7 +2,9 @@
 title: Twitter 專案_協作開發初體驗
 date: 2021-08-08 15:21:16
 updated: 2021-11-30 15:21:16
-tags: [專案紀錄]
+tags: [Projects, Twitter, Split-stack, Collaboration, socket.io]
+categories:
+  - Projects
 ---
 
 ![banner](https://miro.medium.com/max/1400/1*AtjrP9V0w7AhFRexJyB5tQ.png)

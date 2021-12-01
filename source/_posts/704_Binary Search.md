@@ -2,7 +2,9 @@
 title: "[Leetcode] #704_Binary Search"
 date: 2021-07-02 11:13:16
 updated: 2021-11-30 15:21:16
-tags: [Leetcode]
+tags: [Leetcode, EASY]
+categories:
+  - Leetcode Solutions
 ---
 
 [#704_Binary Search](https://leetcode.com/problems/binary-search/) belongs to the EASY category in Leetcode.

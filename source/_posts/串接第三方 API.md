@@ -2,7 +2,9 @@
 title: 迷你電商 X 串接第三方金流
 date: 2021-08-08 15:21:16
 updated: 2021-11-30 15:21:16
-tags: [專案紀錄]
+tags: [Projects, E-commerce, Third-party APIs, Finance API, Split-stack, Collaboration]
+categories:
+  - Projects
 ---
 
 ![snap](https://miro.medium.com/max/1400/1*TlnCs3yBs8ceGGV7Ufn1Qg.png)
