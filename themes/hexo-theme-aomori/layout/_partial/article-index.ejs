@@ -36,6 +36,9 @@ class="article article-type-<%= post.layout %>"
         <%- post.content %>
         <% } %>
     </div>
+    <div class="read-more" style="display: flex; justify-content: flex-end; font-size: 1.2rem; margin: 12px 20px; color:rgb(133, 151, 168);">
+        <a href="<%- url_for(post.path) %>" >Read more ...</a>
+    </div>
     </div>
 
     <div class="article-badge">
