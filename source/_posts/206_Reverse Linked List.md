@@ -4,7 +4,7 @@ date: 2021-08-06 15:21:16
 updated: 2021-11-30 15:21:16
 tags: [Leetcode, EASY]
 categories:
-  - Leetcode Solutions
+  - Leetcode
 ---
 
 ![example1](https://miro.medium.com/max/1084/0*KbEa1WlFKRnl9VWb.jpg)
