@@ -5,7 +5,7 @@ tags:
   - work-related
 ---
 <p align="center">
-  <img src="../split-stack-coop/fe-to-be.jpeg" alt="invitation" style="margin: 20px; height: 300px; width: 600px"/>
+  <img src="https://superface.ai/blog/_next/image?url=%2Fblog%2Fimages%2Fposts%2F2021-openapi-apis.jpg&w=3840&q=75" style="margin: 20px; height: 300px; width: 600px"/>
 </p>
 
 
