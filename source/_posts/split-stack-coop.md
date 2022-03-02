@@ -1,8 +1,9 @@
 ---
 title: 前後端分工觀察小記-1
 date: 2022-02-28 15:40:11
-tags:
-  - work-related
+tags: [work-related, split-stack]
+categories:
+- Work
 ---
 <p align="center">
   <img src="https://superface.ai/blog/_next/image?url=%2Fblog%2Fimages%2Fposts%2F2021-openapi-apis.jpg&w=3840&q=75" style="margin: 20px; height: 300px; width: 600px"/>
@@ -71,4 +72,4 @@ tags:
 
 雖然現有的合作模式還算好辦，我仍十分好奇在其他地方，前後端工程師都是怎麼協調合作、根據什麼樣的考量去分工、或是為了追求易維護性而選擇什麼樣的責任分派方式？這也帶出了一個困擾我很久的問題： **商業邏輯應該放在前端還是後端？**
 
-為此我查了一些資料，歸納出幾個不同的派別。下一篇，就來看看 google 上其他開發者怎麼說～
+為此我查了一些資料，歸納出幾個不同的派別。下一篇，就來看看網路上其他開發者怎麼說～
