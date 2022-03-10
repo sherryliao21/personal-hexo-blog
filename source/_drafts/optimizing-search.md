@@ -51,21 +51,61 @@ categories:
   <img src="../optimizing-search/04.png" style="margin: 20px; height: 300px; width: 600px"/>
 </p>
 
-再來我使用 postman 
+再來我使用 postman 測試這支 API，輸入一樣的參數，觀察 response time：
+
+<p align="center">
+  <img src="../optimizing-search/01.png" style="margin: 20px; height: 300px; width: 600px"/>
+</p>
+
+確定是後端問題後，回到這支 API 的 controller 檢視到底是哪個 function 拖最久時間：
+
+之前整頓過架構，將 controller 中的 function 再拆開，依據職責封裝到 model 或 helper 中。目前已經包裝很精簡，函式粒度適中、一個函式只做一件事，所以可以快速測試花費時間。我在呼叫該 function 那行的前後，加上 `console.log(new Date().getTime())`，來看這個 function 花了多久才回傳值
+
+pseudo code:
+```
+function getData(source) {
+    // 一些非同步程式碼
+}
+
+console.log(`START: ${new Date().getTime()}`)
+const data = await getData('database1')
+console.log(`END: ${new Date().getTime()}`)
+```
+
+到這邊發現是有去 DB 撈資料的 function 在拖，而且兩個 function 差不多時間。於是選了一個進去追，從 model 層（組裝/加總）到 helper 層（純撈），看到底是哪裡拖。
+
+原來是 helper 層（純撈）在拖阿！
+
+於是我印出 SQL logging，把 raw SQL 貼去 workbench 執行，觀察一下 performance：
+
+<p align="center">
+  <img src="../optimizing-search/02.png" style="margin: 20px; height: 300px; width: 600px"/>
+</p>
+
+<p align="center">
+  <img src="../optimizing-search/03.png" style="margin: 20px; height: 300px; width: 600px"/>
+</p>
+
+原來一條產線一次的 query 時間就是花這麼久。回頭看程式碼，有幾個產線迴圈就跑幾次，算算產線數、比對回應時間，這個結果是合理的，看來拖慢時間的部份是這裡。
+
+# **根據資訊去分析原因的過程、得出結論（問題點）**
+看了 SQL performance，`Using where; Using temporary; Using filesort` 可以理解它就是會花這麼多時間（`temporary, filesort` 都很耗時）
+
+<p align="center">
+  <img src="../optimizing-search/02-1.png" style="margin: 20px; height: 300px; width: 600px"/>
+</p>
+
+<p align="center">
+  <img src="../optimizing-search/03-1.png" style="margin: 20px; height: 300px; width: 600px"/>
+</p>
+
+關於 filesort, temporary，我查到一些[資料一](https://www.redoc.top/article/65/MySQL%E8%A7%A3%E5%86%B3using%20filesort%E5%AF%BC%E8%87%B4%E7%9A%84%E6%80%A7%E8%83%BD%E9%97%AE%E9%A2%98)、[資料二](https://www.gushiciku.cn/pl/pjuz/zh-tw)，之後有空來研究看看。
+
+於是得到結論：這些**非同步**的程式碼必須被優化（廢話）。
+# **討論可行方法**
 
 
 
-3. 說明如何去測試、收集資訊的過程
-    1. 前端發現 UI 好慢，跟後端講
-    2. 用 devTools 看 request 的 Timing，發現 Waiting(TTFB) 超級久 （圖 04）
-    3. 先用 postman 找出 API response time（圖 01）
-    4. 到這支 API 的 controller 去找，到底是哪個 function 卡了
-    5. 因為 controller 已經包裝很精簡，所以可以快速測花費時間
-        1. 在該 function 那行的前後，加上 console.log(new Date().getTime())，來看這個 function 花了多久 （pseudo code 圖/embedded code）
-    6. 發現是有去 DB 撈資料的 function 在拖，而且兩個 function 差不多時間
-    7. 選一個進去追，從 model 層（組裝/加總）到 helper 層（純撈），看到底是哪裡拖 → 原來是 helper 層（純撈）在拖
-    8. 印出 SQL logging，把 raw SQL 貼去 workbench 觀察一下 performance （圖 02, 03）
-    9. 觀察到一個產線一次的 query 時間就是花這麼久
 4. 說明根據這些資訊去分析原因的過程、得出結論（問題點）
     1. 回頭看程式碼，有幾個產線就有幾個迴圈，算算時間跟產線數，這個結果是合理的，看來拖慢時間的部份是這裡
     2. 看了 SQL performance，Using where; Using temporary; Using filesort 可以理解它就是會花這麼多時間（filesort 會耗）（圖 02-1, 03-1）
