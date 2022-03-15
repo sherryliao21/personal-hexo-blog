@@ -6,9 +6,6 @@ categories:
 - Work
 ---
 
-<p align="center">
-  <img src="../optimizing-search/solve.jpg" alt="https://unsplash.com/photos/yNh7S4FqCOQ?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink"/>
-</p>
 
 # **前言**
 「解決問題」可以說是工程師的日常，例如：
@@ -88,7 +85,7 @@ console.log(`END: ${new Date().getTime()}`)
 
 原來一條產線一次的 query 時間就是花這麼久。回頭看程式碼，有幾個產線迴圈就跑幾次，算算產線數、比對回應時間，這個結果是合理的，看來拖慢時間的部份是這裡。
 
-# **根據資訊去分析原因的過程、得出結論（問題點）**
+# **分析原因、得出結論（問題點）**
 看了 SQL performance，`Using where; Using temporary; Using filesort` 可以理解它就是會花這麼多時間（`temporary, filesort` 都很耗時）
 
 <p align="center">
