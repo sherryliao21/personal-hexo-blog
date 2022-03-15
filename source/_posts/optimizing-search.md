@@ -6,10 +6,8 @@ categories:
 - Work
 ---
 
-### Outline
-
 <p align="center">
-  <img src="../optimizing-search/01.png"/>
+  <img src="../optimizing-search/solve.jpg" alt="https://unsplash.com/photos/yNh7S4FqCOQ?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink"/>
 </p>
 
 # **前言**
