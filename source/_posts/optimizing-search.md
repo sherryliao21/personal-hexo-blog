@@ -225,4 +225,4 @@ async function getInstantPowerAvgPerPeriod() {
 雖然現在的我還沒辦法做出多厲害的效能調校，成果也不是最棒，因為使用者的耐心有限。但看到 query 速度少了一倍心裡還是有一點成就感。希望能夠在這部份多多鑽研，深入學習資料庫、同步非同步機制、底層運作，以及磨練自己寫程式的能力，未來寫出乾淨易讀又有效率的程式碼。
 
 # **更新**
-後來使用了 redis 做 caching service 之後，整個 response time 加速許多，因為只要 redisCache 裡有資料，就不需要再去 MariaDB 撈取了。就算只有部份 cache，需要去 MariaDB 撈的資料量也變少了，整體 response time 幾乎能縮短到半秒之內。
+後來使用了 Redis  做 caching service 之後，整個 response time 加速許多，因為只要 Redis cache 裡有資料，就不需要再去 MariaDB 撈取了。就算只有部份 cache，需要去 MariaDB 撈的資料量也變少了，整體 response time 幾乎能縮短到半秒之內。在研究 Redis  的過程中也是收穫滿滿，現在又多了一項工具、一種優化方式可以使用。
